@@ -20,18 +20,27 @@
     <script src="https://js.arcgis.com/4.29/"></script>
     
     <script>
-      require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
+      require(["esri/config", "esri/Map", "esri/views/MapView", "esri/layers/GeoJSONLayer"], function(esriConfig, Map, MapView, GeoJSONLayer) {
         
         esriConfig.apiKey = "AAPK5c4b46937c724a85bafafb4e90db2ef8FulouvcXphhvck6dUoP3w0m88XyT223SeoG7XCVjKvxBWfXmFpVhYYFUJevt3N3r";
 
+        const geojsonLayer = new GeoJSONLayer({
+          url: "map.geojson",
+        });
+
         const map = new Map({
-          basemap: "arcgis/topographic"
+          basemap: "streets"
         });
         
+        const template = {
+          title: "City Info",
+          content: "City: {city} <br> Place: {place} <br> Population in 2000: {pop2000}",
+        };
+
         const view = new MapView({
           map: map,
-          center: [-118.805, 34.027],
-          zoom: 13,
+          center: [0, 0],
+          zoom: 2,
           container: "viewDiv"
         });
         
