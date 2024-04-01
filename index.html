@@ -24,19 +24,20 @@
         
         esriConfig.apiKey = "AAPK5c4b46937c724a85bafafb4e90db2ef8FulouvcXphhvck6dUoP3w0m88XyT223SeoG7XCVjKvxBWfXmFpVhYYFUJevt3N3r";
 
+        const template = {
+          title: "City Info",
+          content: "City: {City} <br> Place: {Place} <br> Population in 2010: {Pop_2010} million",
+        };
+
         const geojsonLayer = new GeoJSONLayer({
           url: "map.geojson",
+          popupTemplate: template
         });
 
         const map = new Map({
-          basemap: "topo-vector"
+          basemap: "streets",
           layers: [geojsonLayer],
         });
-        
-        const template = {
-          title: "City Info",
-          content: "City: {city} <br> Place: {place} <br> Population in 2000: {pop2000}",
-        };
 
         const view = new MapView({
           map: map,
